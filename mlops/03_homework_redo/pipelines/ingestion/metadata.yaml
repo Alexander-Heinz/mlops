@@ -1,66 +1,71 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_source:
+      path: 03_homework_redo/data_loaders/data_loading.py
   downstream_blocks:
-  - fill_in_missing_values
-  - load_titanic_bar_chart_t7
+  - data_preparation
   executor_config: null
   executor_type: local_python
-  has_callback: null
+  has_callback: false
   language: python
-  name: load_titanic
+  name: data loading
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: load_titanic
+  uuid: data_loading
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_source:
+      path: 03_homework_redo/transformers/data_preparation.py
   downstream_blocks:
-  - export_titanic_clean
+  - training_lm_model
   executor_config: null
   executor_type: local_python
-  has_callback: null
+  has_callback: false
   language: python
-  name: fill_in_missing_values
+  name: data preparation
   retry_config: null
   status: executed
   timeout: null
   type: transformer
   upstream_blocks:
-  - load_titanic
-  uuid: fill_in_missing_values
+  - data_loading
+  uuid: data_preparation
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_source:
+      path: 03_homework_redo/transformers/training_lm_model.py
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
-  has_callback: null
+  has_callback: false
   language: python
-  name: export_titanic_clean
+  name: training_lm_model
   retry_config: null
   status: executed
   timeout: null
-  type: data_exporter
+  type: transformer
   upstream_blocks:
-  - fill_in_missing_values
-  uuid: export_titanic_clean
+  - data_preparation
+  uuid: training_lm_model
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: null
+created_at: '2024-06-01 10:19:04.723075+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: example_pipeline
+name: ingestion
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -70,26 +75,6 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: example_pipeline
-variables_dir: /home/src/mage_data/unit_0_setup
-widgets:
-- all_upstream_blocks_executed: true
-  color: null
-  configuration:
-    chart_style: vertical
-    chart_type: bar chart
-    x: x
-    y: y
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: load_titanic_bar chart_t7
-  retry_config: null
-  status: failed
-  timeout: null
-  type: chart
-  upstream_blocks:
-  - load_titanic
-  uuid: load_titanic_bar_chart_t7
+uuid: ingestion
+variables_dir: /home/src/mage_data/03_homework_redo
+widgets: []
